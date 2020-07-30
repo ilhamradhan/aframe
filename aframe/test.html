@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Datavisualisierung</title>
+    <meta name="description" content="Hello, WebVR! ? A-Frame">
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+	<script src="https://unpkg.com/aframe-event-set-component@4.0.0/dist/aframe-event-set-component.min.js"></script>
+	<script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+	<script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script src="scripttest.js"></script>
+
+    <script>
+    AFRAME.registerComponent("foo", {
+      init: function() {
+        let self = this.el
+        this.el.addEventListener("click", (e)=>{
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("txtHint").innerHTML = this.responseText;)
+            }
+          };
+          xhttp.open("GET", "test.php", true);
+          xhttp.send();
+        })
+      }
+    })
+    </script>
+</head>
+
+<body>
+
+
+<a-scene background="color:#808080">
+
+    <a-entity id="head" camera position="0 1.6 0" wasd-controls look-controls cursor="rayOrigin: mouse"></a-entity>
+<a-entity layout="type: box; margin: 1.6" scale="0.8 0.8 0.8" position="0 -1 -4" color="blue" foo>
+   <a-text ></a-text>
+<a-plane></plane>
+
+</a-entity>
+
+
+</a-scene>
+
+</body>
+</html>
